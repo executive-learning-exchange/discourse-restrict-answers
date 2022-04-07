@@ -1,0 +1,11 @@
+{{#if currentUser.canViewAnswers}}
+
+{{else if model.isPublicCategory}}  
+
+{{else}}
+<div class="container">
+  <div class="row">
+    <p class="alert" style="display:inline-block">Leader member content only.</p>
+  </div>
+</div>
+{{/if}}
