@@ -8,7 +8,10 @@ import EmberObject, { action } from "@ember/object";
 function initializeTestPlugin(api){
  
   let currentUser = Discourse.User ?  Discourse.User.current() : false;
-  let allowedCategories = [5];
+  let siteCategories = Discourse.__container__.lookup("controller:application").site.categories;
+  let allowedCategories = siteCategories 
+    ? Array.from(siteCategories).filter(c=>c.permission>=1).map(cat=>cat.id) 
+    : [];
 
 
   api.modifyClass("model:topic",{
