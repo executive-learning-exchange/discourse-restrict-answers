@@ -1,26 +1,38 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import discourseComputed from "discourse-common/utils/decorators";
+import topicNavigation from 'discourse/components/topic-navigation';
+import topicCategory from 'discourse/components/topic-category';
+import Controller, { inject as controller } from "@ember/controller";
+import EmberObject, { action } from "@ember/object";
 
 function initializeTestPlugin(api){
  
   let currentUser = Discourse.User ?  Discourse.User.current() : false;
   let allowedCategories = [5];
- 
+
+
+  api.modifyClass("model:topic",{
+     init(){
+      this._super(...arguments);
+      this.allowedCategories = allowedCategories;
+    },
+  });
+
   api.modifyClass("component:topic-category", {
     pluginId: 'test-category',
     init(){
       this._super(...arguments);
-      window.currentCategory = this.topic.category_id;
-    }
-  });
-
-   api.modifyClass("model:topic", {
-      pluginId: 'test-model',
-      init(){
-        this._super(...arguments);
-        this.isPublicCategory = allowedCategories.includes(this.category_id);
+      if(this.topic){
+        window.currentCategory = this.topic.category_id;
       }
-   });
+      this.allowedCategories = allowedCategories;
+    },
+    // @discourseComputed("allowedCategories")
+    // isPublicCategory(allowedCategories) {
+    //   console.log('being computed');
+    //   return allowedCategories.includes(this.topic.category_id);
+    // }
+  });
 
   api.modifyClass("controller:topic", {
     pluginId: 'test-plugin',
@@ -40,8 +52,8 @@ function initializeTestPlugin(api){
         posts : postsWithPlaceholders) 
       : (this.capabilities.isAndroid ? posts.slice(0, 1) : postsWithPlaceholders.slice(0, 1));
     },
-    
   });
+
 
   api.modifyClass("component:topic-navigation", {
     pluginId: 'test-navigations',
@@ -54,12 +66,13 @@ function initializeTestPlugin(api){
   });
 }
 
+
 function userCanViewAnswers(user=false){
     if(!user){
       return;
     }
     let user_groups = user.groups.map(g => g.name);
-    return user_groups.includes('privileged') || user.admin || user.moderator;
+    return user_groups.includes('privileged') || user.admin || user.moderator ;
 }
 
 export default {
