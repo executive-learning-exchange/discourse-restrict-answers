@@ -1,0 +1,5 @@
+en:
+  js:
+    restricted_replies:
+      title: Public
+      for_category: Make this category public (Answers/Replies will be shown)

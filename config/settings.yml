@@ -1,0 +1,6 @@
+plugins:
+  restricted_replies_enabled: true
+  allowed_groups:
+    client: true
+    type: list
+    default: ''
