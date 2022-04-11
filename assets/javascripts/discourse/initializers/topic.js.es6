@@ -54,8 +54,8 @@ function initializeHideAnswersPlugin(api){
     pluginId: 't-navigation',
     init(){
       this._super(...arguments);
-      let currentCategory = this.parentView.topic.category_id;
-      console.log("component:topic-navigation",currentCategory);
+      let currentCategory = this.parentView ? this.parentView.topic.category_id : false;
+      // console.log("component:topic-navigation!",currentCategory);
       if(!userCanViewAnswers(currentUser) && !allowedCategories.includes(currentCategory)){
         this.set("canRender", false);
       }
