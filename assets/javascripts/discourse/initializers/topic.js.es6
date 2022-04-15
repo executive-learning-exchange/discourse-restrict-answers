@@ -76,11 +76,13 @@ function userCanViewAnswers(user = false) {
     return;
   }
   let user_groups = user.groups.map(g => g.name);
-  let allowedGroups = Discourse.application.SiteSettings.allowed_groups;
+  let allowedGroups = Discourse.application.SiteSettings.allowed_groups
+    .split("|")
+    .map(g => g.toLowerCase());
   // console.log("allowedGroups", allowedGroups);
   // console.log("user_groups:", user_groups);
   return (
-    user_groups.some(g => allowedGroups.split("|").includes(g)) ||
+    user_groups.some(g => allowedGroups.includes(g)) ||
     user.admin ||
     user.moderator
   );
