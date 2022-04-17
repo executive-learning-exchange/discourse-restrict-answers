@@ -82,7 +82,7 @@ function userCanViewAnswers(user = false) {
   // console.log("allowedGroups", allowedGroups);
   // console.log("user_groups:", user_groups);
   return (
-    user_groups.some(g => allowedGroups.includes(g)) ||
+    user_groups.some(g => allowedGroups.includes(g.toLowerCase())) ||
     user.admin ||
     user.moderator
   );
