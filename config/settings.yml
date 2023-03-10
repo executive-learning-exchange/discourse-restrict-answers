@@ -1,6 +1,9 @@
 plugins:
-  restricted_replies_enabled: true
-  allowed_groups:
-    client: true
-    type: list
-    default: ''
+    restricted_replies_enabled:
+        client: true
+        type: boolean
+        default: false
+    allowed_groups:
+        client: true
+        type: list
+        default: ""
