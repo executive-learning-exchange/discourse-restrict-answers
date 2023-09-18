@@ -7,12 +7,3 @@ plugins:
         client: true
         type: list
         default: ""
-    restrict_connector_topic_above_post_stream_message: 
-        client: true
-        type: string
-        default: "Active ELE member content only."
-    restrict_connector_topic_title_message: 
-        client: true
-        type: string
-        default: "Please login to see answers/replies."
-    
