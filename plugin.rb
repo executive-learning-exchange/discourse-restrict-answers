@@ -3,7 +3,7 @@
 # name: Hide-Answers-plugin
 # about: Restrict replies in certain categories to the OP and specified groups
 # fork from https://github.com/discourse/discourse-restricted-replies
-# version: 0.0.1
+# version: 0.0.2
 # authors: Alex Wang
 # transpile_js: true
 
