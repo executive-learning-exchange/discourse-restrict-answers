@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# name: Hide-Answers-plugin
+# name: discourse-restrict-answers
 # about: Restrict replies in certain categories to the OP and specified groups
 # fork from https://github.com/discourse/discourse-restricted-replies
-# version: 0.0.3
+# version: 0.0.4
 # authors: Alex Wang
 # transpile_js: true
 
