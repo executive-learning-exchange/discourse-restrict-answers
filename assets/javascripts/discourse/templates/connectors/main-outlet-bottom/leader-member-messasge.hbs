@@ -1,0 +1,8 @@
+{{#if currentUser.canViewAnswers}}{{else if isPublicCategory}}{{else}}
+	<div class="container">
+		<div class="row">
+			<p class="alert" style="display:inline-block">Active member content
+				only.</p>
+		</div>
+	</div>
+{{/if}}
